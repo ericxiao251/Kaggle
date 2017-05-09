@@ -1,0 +1,6 @@
+# ignore all the garbage folders that python creates.
+.idea/
+.ipynb_checkpoints/
+__pycache__/
+cache/
+*.csv
