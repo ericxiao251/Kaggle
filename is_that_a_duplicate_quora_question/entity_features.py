@@ -62,7 +62,7 @@ def get_entity_counts(row):
 if __name__ == '__main__':
     nlp = spacy.load('en')
 
-    df = pd.concat([sample_train, sample_test])
+    df = pd.concat([df_train, df_test])
     df['word_shares'] = df.apply(get_entity_counts, axis=1, raw=True)
 
     x = pd.DataFrame()
