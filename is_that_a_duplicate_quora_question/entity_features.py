@@ -1,5 +1,8 @@
 from __future__ import division
-from __future__ import unicode_literals
+
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 import pandas as pd
 import datetime
@@ -7,10 +10,12 @@ import operator
 import spacy
 
 DATA_PATH = "data/"
-FILE_NAME = 'spacy_features.csv'
+FILE_NAME = 'spacy_entity_features.csv'
 
 df_train = pd.read_csv(DATA_PATH + 'train.csv')
 df_test  = pd.read_csv(DATA_PATH + 'test.csv')
+# df_train = df_train.head(10)
+# df_test  = df_test.head(10)
 
 ENTITY_TYPES = [
     'PERSON', 'NORP', 'FACILITY', 'ORG',
@@ -71,7 +76,5 @@ if __name__ == '__main__':
 
     x_train = x[:df_train.shape[0]]
     x_test  = x[df_train.shape[0]:]
-    x_train = x[:sample_train.shape[0]]
-    x_test  = x[sample_test.shape[0]:]
     x_train.to_csv(DATA_PATH + 'train_' + FILE_NAME)
     x_test.to_csv(DATA_PATH + 'test_' + FILE_NAME)
