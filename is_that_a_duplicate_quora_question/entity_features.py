@@ -1,13 +1,10 @@
 from __future__ import division
 
-import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
-
 import pandas as pd
 import datetime
 import operator
 import spacy
+import en_core_web_md
 
 DATA_PATH = "data/"
 FILE_NAME = 'spacy_entity_features.csv'
@@ -16,6 +13,9 @@ df_train = pd.read_csv(DATA_PATH + 'train.csv')
 df_test  = pd.read_csv(DATA_PATH + 'test.csv')
 # df_train = df_train.head(10)
 # df_test  = df_test.head(10)
+
+if len(df.index) < 1000:
+    FILE_NAME = 'test/spacy_entity_features.csv'
 
 ENTITY_TYPES = [
     'PERSON', 'NORP', 'FACILITY', 'ORG',
