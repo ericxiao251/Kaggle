@@ -14,9 +14,6 @@ df_test  = pd.read_csv(DATA_PATH + 'test.csv')
 # df_train = df_train.head(10)
 # df_test  = df_test.head(10)
 
-if len(df.index) < 1000:
-    FILE_NAME = 'test/spacy_entity_features.csv'
-
 ENTITY_TYPES = [
     'PERSON', 'NORP', 'FACILITY', 'ORG',
     'GPE', 'LOC', 'PRODUCT', 'EVENT',
@@ -73,6 +70,9 @@ if __name__ == '__main__':
     x = pd.DataFrame()
     for index, ent_features in enumerate(ENTITY_FEATURES):
         x[ent_features] = df['word_shares'].apply(lambda x: float(x.split(':')[ index ]))
+
+    if len(df.index) < 1000:
+        DATA_PATH += 'test/'
 
     x_train = x[:df_train.shape[0]]
     x_test  = x[df_train.shape[0]:]
